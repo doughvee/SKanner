@@ -1,0 +1,30 @@
+.ocr-container {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  background: #222;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+.ocr-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.ocr-table th,
+.ocr-table td {
+  padding: 10px;
+  border: 1px solid white;
+}
+
+.ocr-table th {
+  background: #444;
+  font-weight: bold;
+}
+
+.ocr-table td {
+  background: #333;
+}

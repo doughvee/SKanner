@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import LoginScreen from "./pages/LoginScreen";
+import BudgetSelection from "./pages/BudgetSelection";
+import ReceiptScanner from "./pages/ReceiptScanner";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./pages/LoginScreen.css";
+import "./pages/BudgetSelection.css";
+import ManualReceiptEntry from "./components/ManualReceiptEntry";
+import OCRProcessor from "./components/OCRProcessor";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} /> {/* Redirect to login */}
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/budget" element={<BudgetSelection />} />
+        <Route path="/ocr-processor" element={<OCRProcessor />} />
+        <Route path="/scanner" element={<ReceiptScanner />} />
+        <Route path="/manual-entry" element={<ManualReceiptEntry />} />
+        
+      </Routes>
+    </Router>
   );
 }
 

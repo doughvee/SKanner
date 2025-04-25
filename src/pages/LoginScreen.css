@@ -1,0 +1,52 @@
+/* LoginScreen.css */
+body {
+  background-color: #121212; /* Dark background */
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.skbms-login-container {
+  text-align: center;
+}
+
+h2 {
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.skbms-login-form {
+  background: #ffffff1a;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.skbms-login-input {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+}
+
+.skbms-login-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.skbms-login-input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.skbms-login-btn {
+  background-color: #007bff;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.skbms-login-btn:hover {
+  background-color: #0056b3;
+}
