@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">SKanner</string>
-    <string name="title_activity_main">SKanner</string>
-    <string name="package_name">com.example.receiptscanner</string>
-    <string name="custom_url_scheme">com.example.receiptscanner</string>
+    <string name="app_name">skanner</string>
+    <string name="title_activity_main">skanner</string>
+    <string name="package_name">com.skanner.app</string>
+    <string name="custom_url_scheme">com.skanner.app</string>
 </resources>

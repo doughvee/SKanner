@@ -1,4 +1,4 @@
-package com.example.receiptscanner;
+package com.skanner.app;
 
 import com.getcapacitor.BridgeActivity;
 

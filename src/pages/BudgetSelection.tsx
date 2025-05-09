@@ -72,7 +72,9 @@ const BudgetSelection = () => {
         </button>
       </div>
   
-      <h3 className="mt-5">Choose a Budget Plan</h3>
+      <h3 className="mt-5">
+  Annual Barangay Youth <br /> Investment Program
+      </h3>
       <select
         className="form-control w-75 mb-3"
         value={selectedBudgetId}
@@ -84,7 +86,7 @@ const BudgetSelection = () => {
           setSelectedBudgetName(selectedBudget ? selectedBudget.name : "");
         }}
       >
-        <option value="">Select Budget</option>
+        <option value="">Select Program/Project/Activity</option>
         {budgets.map((budget) => (
           <option key={budget.id} value={budget.id}>{budget.name}</option>
         ))}

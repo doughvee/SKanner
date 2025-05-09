@@ -31,20 +31,11 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths"></meta-data>
         </provider>
     </application>
 
     <!-- Permissions -->
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
-
-    <!-- Features for Camera, Flash, Focus, and Zoom -->
-    <uses-feature android:name="android.hardware.camera" android:required="true"/>
-    <uses-feature android:name="android.hardware.camera.front" android:required="false"/>
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="true"/>
-    <uses-feature android:name="android.hardware.camera.flash" android:required="true"/>
-    <uses-feature android:name="android.hardware.camera.zoom" android:required="false"/>
-
 </manifest>

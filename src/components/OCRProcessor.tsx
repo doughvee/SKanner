@@ -227,6 +227,67 @@ const OCRProcessor: React.FC<OCRProcessorProps> = ({
         computedTotal += parseFloat(total);
         continue;
       }
+// Format 9: ITEM (Next Line) QTY x PRICE
+match = lines[i + 1]?.match(/^(\d+)\s*x\s*(\d+\.\d{2})$/);
+if (match) {
+  newItems.push({
+    name: line.trim(),
+    quantity: match[1],
+    price: match[2],
+    amount: (parseFloat(match[1]) * parseFloat(match[2])).toFixed(2),
+  });
+  computedTotal += parseFloat((parseFloat(match[1]) * parseFloat(match[2])).toFixed(2));
+  i++; // skip next line
+  continue;
+}
+
+// Format 10: ITEM (Next Line) QTY x PRICE = TOTAL
+match = lines[i + 1]?.match(/^(\d+)\s*x\s*(\d+\.\d{2})\s*=\s*(\d+\.\d{2})$/);
+if (match) {
+  newItems.push({
+    name: line.trim(),
+    quantity: match[1],
+    price: match[2],
+    amount: match[3],
+  });
+  computedTotal += parseFloat(match[3]);
+  i++; // skip next line
+  continue;
+}
+
+// Format 11: ITEM QTY@PRICE (One Line)
+match = line.match(/^(.+?)\s+(\d+)@(\d+\.\d{2})$/);
+if (match) {
+  const qty = match[2];
+  const price = match[3];
+  const total = (parseFloat(qty) * parseFloat(price)).toFixed(2);
+  newItems.push({
+    name: match[1].trim(),
+    quantity: qty,
+    price: price,
+    amount: total,
+  });
+  computedTotal += parseFloat(total);
+  continue;
+}
+
+// Format 12: QTY ITEM PRICE (with optional 'v' at end)
+match = line.match(/^(\d+)\s+(.+?)\s+(\d+\.\d{2})v?$/);
+if (match) {
+  const qty = match[1];
+  const itemName = match[2].trim();
+  const price = match[3];
+  const total = (parseFloat(qty) * parseFloat(price)).toFixed(2);
+
+  newItems.push({
+    name: itemName,
+    quantity: qty,
+    price: price,
+    amount: total,
+  });
+  computedTotal += parseFloat(total);
+  continue;
+}
 
       // Debug skipped lines
       console.log("Skipped line (no match):", line);
@@ -327,17 +388,17 @@ const OCRProcessor: React.FC<OCRProcessorProps> = ({
               <tbody className="text-center uppercase">
                 {items.map((item, index) => (
                   <tr key={index}>
-                    <td className="uppercase">{item.name}</td>
-                    <td className="uppercase">{item.quantity}</td>
-                    <td className="uppercase">₱{parseFloat(item.price).toFixed(2)}</td>
-                    <td className="uppercase">₱{parseFloat(item.amount).toFixed(2)}</td>
+                    <td className="uppercase">{item.name.toUpperCase()}</td>
+                    <td className="uppercase">{item.quantity.toUpperCase()}</td>
+                    <td className="uppercase">₱{parseFloat(item.price).toFixed(2).toUpperCase()}</td>
+                    <td className="uppercase">₱{parseFloat(item.amount).toFixed(2).toUpperCase()}</td>
                   </tr>
                 ))}
                 {/* Total row */}
-                <tr className="table-secondary fw-bold">
+                {/* <tr className="table-secondary fw-bold">
                   <td colSpan={3} className="text-end">Total</td>
                   <td>₱{totalAmount.toFixed(2)}</td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>
@@ -387,3 +448,5 @@ const OCRProcessor: React.FC<OCRProcessorProps> = ({
 };
 
 export default OCRProcessor;
+
+
